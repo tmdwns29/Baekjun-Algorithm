@@ -1,11 +1,10 @@
 import sys
 
 N = int(sys.stdin.readline().rstrip())
-value = 0
 stack = []
+
 for i in range(N):
     command = sys.stdin.readline().rstrip()
-    
     if 'push' in command:
         command, value = command.split(' ')
         stack.append(int(value))
