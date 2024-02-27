@@ -28,3 +28,12 @@
 
  <p>첫째 줄에 입력으로 주어진 M개의 수에 대해서, 각 수가 적힌 숫자 카드를 상근이가 몇 개 가지고 있는지를 공백으로 구분해 출력한다.</p>
 
+### 다른 풀이
+<p> 이분탐색 함수를 이용하지 않고 반복문을 이용하여 딕셔너리를 순회하여 값을 찾는 방식
+for target in candidate:
+    result = count.get(target)
+    if result == None:
+        print(0, end=" ")
+    else:
+        print(result, end=" ")
+</p>
