@@ -30,10 +30,14 @@
 
 ### 다른 풀이
 <p> 이분탐색 함수를 이용하지 않고 반복문을 이용하여 딕셔너리를 순회하여 값을 찾는 방식
-for target in candidate:
-    result = count.get(target)
+ 
+~~~python
+    for target in candidate:
+        result = count.get(target)
     if result == None:
         print(0, end=" ")
     else:
         print(result, end=" ")
+ ~~~
+
 </p>
