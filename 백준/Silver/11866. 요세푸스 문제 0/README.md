@@ -30,3 +30,24 @@
 
  <p>예제와 같이 요세푸스 순열을 출력한다.</p>
 
+### 풀이
+
+~~~python
+i = 0
+queue = [i for i in range(1, N+1)]
+arr = []
+~~~
+<p>K번째 인덱스를 가리킬 i를 선언, queue에 1부터 N까지의 정수 저장, arr에 제거할 값을 저장</p>
+
+~~~python
+while queue:
+    i += K-1
+    if i >= len(queue):
+        i %= len(queue)
+    arr.append(str(queue.pop(i)))
+
+print('<'+', '.join(arr)+'>')
+~~~
+<p>queue가 0이 아닐 때까지 반복, i는 제거할 K-1번째 인덱스를 가리키고, i의 값이 queue리스트의 길이보다 같거나 크면, i를 queue의 길이로 나눈 값을 가리킨다. N,K값이 위의 테스트 케이스와 같을 때, i가 4이면 i+=K-1 을 했을 때 값이 6이므로 queue의 길이보다 커지게 된다. 즉 6 % 5를 한 값이 제거할 인덱스를 가리키게 된다. 1 2 4 5 7 에서 7-> 1-> 2 순으로 가리킴으로써 2가 제거된다.
+그리고 제거된 값들은 arr리스트에 append로 추가되고 while문이 끝난 뒤에 print문으로 join메서드를 통해 제거된 순서대로 출력한다.
+</p>
