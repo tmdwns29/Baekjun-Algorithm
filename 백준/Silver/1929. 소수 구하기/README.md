@@ -26,3 +26,19 @@
 
  <p>한 줄에 하나씩, 증가하는 순서대로 소수를 출력한다.</p>
 
+### 풀이
+ ~~~python
+M,N=map(int,input().split())
+
+for i in range(M,N+1):
+    if i==1: # 1은 소수가 아니므로 제외
+        continue
+    for j in range(2,int(i**0.5)+1): # i의 제곱근까지의 약수를 찾음
+        if i%j==0: # 나머지가 있으면 1과 자기자신 외에 약수가 존재하므로
+            break # 종료
+    else: # i가 1이 아닌 수 중에서 소수인 경우,
+        print(i) # 소수 i 출력
+ ~~~
+
+### 새롭게 알게된 사실
+ <p>if문과 else문 사이에 들여쓰기 없이 for문 사용이 가능하다!</p>
