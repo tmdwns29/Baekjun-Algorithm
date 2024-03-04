@@ -42,3 +42,38 @@
 
  <p>각 줄마다 해당 문자열이 균형을 이루고 있으면 "yes"를, 아니면 "no"를 출력한다.</p>
 
+### 풀이
+
+~~~python
+while True:
+    stack = [] # 괄호 집어넣을 스택구조 리스트 선언
+    string = input() # 문자열 입력받기
+    answer = 'yes'
+
+    if string == '.': # 온점 나오면 종료
+        break
+    for i in string: # 입력받은 문자열 하나씩 순회
+        if i == '(' or i == '[': # 시작괄호 '(', '[' 나오면
+            stack.append(i) # 스택에 삽입
+        elif i == ')': # 닫는 소괄호 나온 경우,
+            if not len(stack): # 스택에 아무것도 없으면(괄호 순서 오류)
+                answer = 'no' # 균형 맞지 않음
+                break
+            else: # 스택에 괄호가 존재 하는데,
+                if stack.pop(-1) != '(': # 마지막 괄호가 '('이 아니면(닫는 괄호 삽입 불가능)
+                    answer = 'no' # 균형 맞지 않음
+		    break
+        elif i == ']': # 닫는 대괄호 나온 경우,
+            if not len(stack): # 스택에 아무것도 없으면(괄호 순서 오류)
+                answer = 'no'
+                break
+            else: # 스택에 괄호가 존재하는데,
+                if stack.pop(-1) != '[': # 마지막 괄호가 '['이 아니면(닫는 괄호 삽입 불가능)
+                    answer = 'no'
+		    break
+        else: # 괄호를 제외한 문자(영문, 숫자, 공백 등)라면,
+            continue
+    if len(stack): # 스택길이가 0이 아니면(괄호가 아직 남아있다면)
+        answer = 'no' # 균형 맞지 않음
+    print(answer)
+~~~
