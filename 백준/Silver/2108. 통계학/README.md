@@ -41,3 +41,38 @@
 
 <p>넷째 줄에는 범위를 출력한다.</p>
 
+### 풀이
+ <p>중앙값, 범위는 어렵지 않게 구할 수 있었다. 산술평균은 반올림 구현하는 함수를 잊고있어서 다시 찾아보고 풀었다. 문제는 최빈값이었는데 처음에는 count메서드를 이용해서 그 값이 1이 넘는 경우에만 다른 리스트에 count된 값을 추가하는 방식으로 시도했다. 하지만 시간이 초과되었고, 다른 분들의 풀이를 참고했다. </p>
+
+ ~~~python
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+num = []
+
+for _ in range(N):
+    num.append(int(input()))
+num.sort()
+
+print(round(sum(num)/N))
+print(num[len(num)//2])
+
+dic = dict() # 딕셔너리 선언
+for i in num: # num숫자들을 하나씩 순회하며
+    if i in dic: # dic에 num숫자들이 있으면
+        dic[i] += 1 # 원래 값에 +1
+    else: # dic에 num 숫자들이 없으면
+        dic[i] = 1 # 1추가
+max_num = max(dic.values()) # 중복값이 가장 많은 수 저장
+max_dic = [] # 중복값의 최대값을 저장하는 리스트 선언
+for i in dic: # dic의 중복값들을 하나씩 순회하며
+    if max_num == dic[i]: # 그 값이 최대값과 같다면
+        max_dic.append(i) # 그 값을 추가
+if len(max_dic)>1: # 최빈값이 2개 이상이면
+    print(max_dic[1]) # 두번째로 작은 값 출력
+else: # 최빈값이 1개이면
+    print(max_dic[0]) # 그 값을 출력
+
+print(max(num)-min(num))
+ ~~~
