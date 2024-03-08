@@ -28,3 +28,31 @@
 
  <p>입력된 수열을 만들기 위해 필요한 연산을 한 줄에 한 개씩 출력한다. push연산은 +로, pop 연산은 -로 표현하도록 한다. 불가능한 경우 NO를 출력한다.</p>
 
+### 풀이
+
+~~~python
+N = int(input())
+arr, res, find = [], [], True # 스택(arr), +-출력(res), 스택연산가능여부(find)
+start = 1 # 오름차순이므로 1부터 시작
+for _ in range(N):
+    num = int(input())
+
+    while start <= num: # 입력받은 수가 start랑 같을 때까지
+        arr.append(start) # 스택에 push연산
+        res.append('+')
+        start += 1 # start 1증가
+
+    if arr[-1] == num: # 마지막에 push한 수가 입력받은 수와 같으면(꺼낼 타이밍)
+        arr.pop() # 스택에 pop연산
+        res.append('-')
+
+    else: # 마지막에 push한 수가 입력받은 수와 같지 않다면(스택연산 불가능)
+        find = False
+        break # 종료
+
+if not find: # 스택 연산이 불가능하다면
+    print('NO') # NO 출력
+else: # 스택 연산이 가능하다면
+    for i in res: # +, - 를 저장한 리스트를 순차적으로 출력
+        print(i)
+~~~
