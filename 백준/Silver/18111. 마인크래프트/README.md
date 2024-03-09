@@ -41,3 +41,68 @@
 
  <p>첫째 줄에 땅을 고르는 데 걸리는 시간과 땅의 높이를 출력하시오. 답이 여러 개 있다면 그중에서 땅의 높이가 가장 높은 것을 출력하시오.</p>
 
+### 풀이
+ ~~~python
+ import sys
+input = sys.stdin.readline
+
+N,M,B = map(int, input().split())
+arr=[]
+for _ in range(N):
+    arr.extend(map(int, input().split()))
+
+time = [0 for _ in range(257)] # 256개의 0 리스트로 저장
+height = 0 # 땅의 높이
+for g in range(257): # g = 현재의 땅 높이
+    block = B # 인벤토리 블록 개수
+    for i in arr: # 땅의 높이 순회
+        if i <= g: # 집터가 현재 땅 높이보다 낮으면
+            time[g] += g - i # 개당 소요시간 1초
+            block -= g - i # 블록을 빼서 채워줌
+        else: # 집터가 현재 땅 높이보다 높으면
+            time[g] += 2 * (i - g) # 개당 소요시간 2초
+            block += i - g # 높으만큼 블록을 빼서 인벤토리에 채움
+    if block >= 0 and time[g] <= time[height]:
+        # 인벤토리에 블록이 남아있고, 현재 땅높이에서 소요시간이 height에서의 소요시간보다 짧거나 같으면
+        height = g # height값을 현재 땅 높이로 업데이트
+
+print(time[height], height)
+ ~~~
+### 새로 배운 것 [참고 웹사이트] → [append VS extend 차이점](https://m.blog.naver.com/wideeyed/221541104629)
+ <p>append는 x 그 자체를 원소로 넣고 extend는 가장 바깥쪽 iterable을 넣는다. </p>
+
+~~~python
+# 실습 소스 코드
+
+x = ['Tick', 'Tock', 'Song']
+y = ['Ping', 'Pong']
+x.append(y)
+print('x:', x) # x:['Tick', 'Tock', 'Song', ['Ping', 'Pong']]
+
+x = ['Tick', 'Tock', 'Song']
+y = ['Ping', 'Pong']
+x.extend(y)
+print('x:', x) # x:['Tick', 'Tock', 'Song', 'Ping', 'Pong']
+
+
+x = ['Tick', 'Tock', 'Song']
+y = [['Ping', 'Pong']]
+x.append(y)
+print('x:', x) # x:['Tick', 'Tock', 'Song', [['Ping', 'Pong']]]
+
+x = ['Tick', 'Tock', 'Song']
+y = [['Ping', 'Pong']]
+x.extend(y)
+print('x:', x) # x:['Tick', 'Tock', 'Song', ['Ping', 'Pong']]
+
+
+x = ['Tick', 'Tock', 'Song']
+y = 'Ping'
+x.append(y)
+print('x:', x) # ['Tick', 'Tock', 'Song', 'Ping']
+
+x = ['Tick', 'Tock', 'Song']
+y = 'Ping'
+x.extend(y)
+print('x:', x) # ['Tick', 'Tock', 'Song', 'P', 'i', 'n', 'g']
+~~~
