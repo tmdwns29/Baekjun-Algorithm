@@ -30,3 +30,20 @@
 
  <p>첫 번째 줄부터 M개의 줄에 걸쳐 비밀번호를 찾으려는 사이트 주소의 비밀번호를 차례대로 각 줄에 하나씩 출력한다.</p>
 
+### 풀이
+ <p>찾고자 하는 주소와 일치하는 웹사이트의 비밀번호를 출력하는 문제다. 처음에는 리스트로 접근해서 이중 for문으로 하나하나 값을 비교했다가 시간초과가 떴다. 더 빠르게 검색을 하기 위해서 해시를 이용했다.</p>
+
+ ~~~python
+ import sys
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+website, search = dict(), [] # 주소와 비밀번호를 저장할 딕셔너리 website, 찾고
+for i in range(N):
+    address, pwd = map(str, input().rstrip().split())
+    website[address] = pwd
+for i in range(M):
+    search.append(input().rstrip())
+for i in search:
+    sys.stdout.write('%s\n'%website[i])
+ ~~~
