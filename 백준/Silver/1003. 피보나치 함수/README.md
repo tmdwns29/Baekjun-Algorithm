@@ -55,3 +55,24 @@
 
  <p>각 테스트 케이스마다 0이 출력되는 횟수와 1이 출력되는 횟수를 공백으로 구분해서 출력한다.</p>
 
+### 풀이
+ ~~~python
+import sys
+input = sys.stdin.readline
+
+zero = [1,0,1]
+one  = [0,1,1]
+
+def fibonacci(num):
+    length = len(zero)
+    if length <= num:
+        for i in range(length, num+1):
+            zero.append(zero[i-1]+zero[i-2])
+            one.append(one[i-1]+one[i-2])
+    print("%d %d"%(zero[num], one[num]))
+T = int(input())
+for i in range(T):
+    fibonacci(int(input()))
+ ~~~
+ <p>피보나치 값을 구하는 것이 아닌 0과 1의 출력되는 횟수를 구하면 된다. 0의 피보나치 수는 0, 1의 피보나치 수는 1, 따라서 2의 피보나치 수는 0과 1이 각각 하나씩 출력된다. 0과1을 저장할 리스트를 선언하여 0,1,2일 때의 호출된 0과1의 수를 각각 초기화해준다. <code>zero=[1,0,1], one=[0,1,1]</code></p>
+ <p>함수에서 0또는 1의 출력 횟수를 저장할 리스트의 길이를 length로 초기화하고, if문에서 입력받은 수가 length보다 같거나 큰 경우에 그 차이만큼 for문을 통해서 각 이전 2개의 수를 더한 값(0과 1의 출력 횟수)을 저장한다. 저장이 끝나면 num번째 인덱스에 접근하여 최종적으로 0과 1의 출력횟수를 출력한다. </p>
