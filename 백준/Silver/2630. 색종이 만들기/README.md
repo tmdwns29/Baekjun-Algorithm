@@ -38,3 +38,31 @@
 
  <p>첫째 줄에는 잘라진 햐얀색 색종이의 개수를 출력하고, 둘째 줄에는 파란색 색종이의 개수를 출력한다.</p>
 
+### 풀이
+ ~~~python
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+paper = [list(map(int, input().split())) for _ in range(N)]
+result = [] # 최종적인 정사각형의 개수 저장 리스트
+
+def div(x,y,N):
+    color = paper[x][y] # 시작점 색상 기준 잡기
+    for i in range(x, x+N): # 정사각형 순회
+        for j in range(y, y+N):
+            if color != paper[i][j]: # 시작점 색상과 탐색중인 색이 다를 경우 4등분해서 다시 탐색
+                div(x,y,N//2) # 2사분면
+                div(x,y+N//2,N//2) # 3사분면
+                div(x+N//2,y,N//2) # 1사분면
+                div(x+N//2,y+N//2,N//2) # 4사분면
+                return
+    if color == 0: # color색상이 0으로 통일된 정사각형이면,
+        result.append(0) # 0을 추가
+    else: # color색상이 1로 통일된 정사각형이면,
+        result.append(1) # 1을 추가
+
+div(0,0,N)
+print(result.count(0))
+print(result.count(1))
+ ~~~
