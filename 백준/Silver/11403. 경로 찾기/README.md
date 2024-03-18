@@ -26,3 +26,22 @@
 
  <p>총 N개의 줄에 걸쳐서 문제의 정답을 인접행렬 형식으로 출력한다. 정점 i에서 j로 가는 길이가 양수인 경로가 있으면 i번째 줄의 j번째 숫자를 1로, 없으면 0으로 출력해야 한다.</p>
 
+### 풀이
+~~~python
+# 플로이드 워셜 알고리즘
+import sys
+input = sys.stdin.readline
+graph = []
+
+N = int(input())
+for i in range(N):
+    graph.append(list(map(int, input().split())))
+
+for i in range(N): # i는 반환점
+    for j in range(N): # j는 시작 정점
+        for k in range(N): # k는 끝 정점
+            if graph[j][i] and graph[i][k]: # 양방향 모두 간선이 존재하면
+                graph[j][k] = 1 # [j,k]는 경로가 존재
+for i in graph:
+    print(*i)
+~~~
