@@ -2,13 +2,10 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-triangle = [[]for _ in range(n)]
+triangle = []
 
 for i in range(n):
-    if i == 0:
-        triangle[i].append(int(input()))
-    else:
-        triangle[i].extend(list(map(int, input().split())))
+    triangle.append(list(map(int, input().split())))
 
 for i in range(1, n):
     for j in range(i+1):
