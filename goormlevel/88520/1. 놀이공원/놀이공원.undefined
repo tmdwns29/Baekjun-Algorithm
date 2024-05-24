@@ -1,0 +1,19 @@
+t = int(input())
+answer = []
+
+for _ in range(t):
+    n, k = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append(list(map(int, input().split())))
+        
+    result = []
+
+    for y in range(n-k+1):
+        for x in range(n-k+1):
+            result.append(sum(sum([row[x:x+k] for row in matrix[y:y+k]], [])))
+
+    answer.append(min(result))
+    
+for a in answer:
+    print(a)
