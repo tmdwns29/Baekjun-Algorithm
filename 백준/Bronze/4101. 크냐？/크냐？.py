@@ -1,7 +1,6 @@
 import sys
 input = sys.stdin.readline  
 
-result = []
 while True:
     a, b = map(int, input().split())
 
