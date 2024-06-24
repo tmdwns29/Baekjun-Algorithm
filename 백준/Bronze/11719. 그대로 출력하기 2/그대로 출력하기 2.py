@@ -1,6 +1,2 @@
-i=0
-while i<100:
-    try:
-        print(input())
-    except EOFError:
-        break
+import sys
+print(sys.stdin.read())
