@@ -7,11 +7,10 @@ cx, cy = map(int, input().split())
 
 x = [ax,bx,cx]
 y = [ay,by,cy]
-x.sort()
-y.sort()
 
-if x[0]==x[1]: print(x[2], end=' ')
-else: print(x[0], end=' ')
-
-if y[0]==y[1]: print(y[2], end='')
-else: print(y[0], end='')
+for i in range(3):
+    if x.count(x[i]) == 1:
+        dx = x[i]
+    if y.count(y[i]) == 1:
+        dy = y[i]
+print(dx,dy)
