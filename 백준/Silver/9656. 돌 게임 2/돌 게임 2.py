@@ -1,7 +1,7 @@
 N = int(input())
 cnt = 0
 while N != 0:
-    if N > 3 or N // 3 > 1:
+    if N > 3:
         N -= 3
     else:
         N -= 1
