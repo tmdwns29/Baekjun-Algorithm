@@ -23,7 +23,7 @@ public class Main {
         dfs(1, graph, visit);
     }
 
-	// BFS함수		 	시작 노드, 	배열,			방문정보
+	// BFS함수	시작 노드, 	배열,		방문정보
     static String bfs(int start, int[][] graph, boolean[] visit) {
         
     	// 문자열 더하기 연산을 효율적으로 하기 위함
