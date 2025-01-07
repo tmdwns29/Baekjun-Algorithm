@@ -1,12 +1,13 @@
 import sys
 input = sys.stdin.readline
-N = int(input())
-arr=[]
 
-for i in range(N):
-    x = int(input())
-    if x == 0:
-        arr.pop()
+K = int(input())
+num_list = []
+for i in range(K):
+    num = int(input())
+    if num == 0:
+        num_list.pop()
     else:
-        arr.append(x)
-print(sum(arr))
+        num_list.append(num)
+
+print(sum(num_list))
