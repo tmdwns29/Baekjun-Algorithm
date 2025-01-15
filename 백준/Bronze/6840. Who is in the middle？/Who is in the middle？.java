@@ -6,7 +6,6 @@ class Main {
         Scanner input = new Scanner(System.in);
 
         int[] bear = new int[3];
-        int answer = 0;
 
         for (int i=0; i<3; i++) {
             bear[i] = input.nextInt();
